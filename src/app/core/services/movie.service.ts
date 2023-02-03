@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MoviesModel } from '../models/movies-model';
+import { SearchmovieModel } from '../models/searchmovie-model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +19,9 @@ export class MovieService {
 
   trendingMovies(): Observable<MoviesModel> {
    return  this.http.get<MoviesModel>(`${this.baseUrl}/trending/movie/day?api_key=${this.apiKey}`)
+  }
+
+  getSearchMovie(data: any): Observable<any>{
+    return this.http.get(`${this.baseUrl}/search/movie?api_key=${this.apiKey}$query=${data.query}`)
   }
 }
