@@ -11,6 +11,13 @@ import { MoviesModel } from '../../../core/models/movies-model';
 export class HomeComponent implements OnInit{
   bannerData: MoviesModel[] = []
   trendingMoviesData: MoviesModel[] = []
+  getActionsMovies: MoviesModel[] = []
+  getAdvantureMovies: MoviesModel[] = []
+  getComedyMovies: MoviesModel[] = []
+  getThrilerMovies: MoviesModel[] = []
+  getDocumentaryMovies: MoviesModel[] = []
+  getScienceMovies: MoviesModel[] = []
+  getAnimationMovies: MoviesModel[] = []
   activateIndex = 0
 
   constructor(private movieService: MovieService) {
@@ -19,12 +26,19 @@ export class HomeComponent implements OnInit{
   ngOnInit() {
     this.getBanner()
     this.getTrendingMovies()
+    this.actionMovies()
+    this.comedyMovies()
+    this.scienceMovies()
+    this.documenatryMovies()
+    this.thrillerMovies()
+    this.AdvantureMovies()
+    this.animationMovies()
   }
 
   getBanner() {
     this.movieService.moviesForBanner().subscribe((data) => {
       this.bannerData = data.results
-      // console.log(this.bannerData)
+      console.log(this.bannerData, '#banners')
     })
   }
   previousSlide() {
@@ -40,6 +54,77 @@ export class HomeComponent implements OnInit{
      tap((data) => {
        this.trendingMoviesData = data.results
      })
+    ).subscribe()
+  }
+
+  //action
+
+  actionMovies() {
+    this.movieService.fetchActionMovies().pipe(
+      tap((actionResult) => {
+        this.getActionsMovies = actionResult.results
+      })
+    ).subscribe()
+  }
+
+  //advanture
+
+  AdvantureMovies() {
+    this.movieService.fetchAdvantureMovies().pipe(
+      tap((discoverResult) => {
+        this.getAdvantureMovies = discoverResult.results
+      })
+    ).subscribe()
+  }
+
+  //comedy
+
+  comedyMovies() {
+    this.movieService.fetchComedyMovies().pipe(
+      tap((comedyResult) => {
+        this.getComedyMovies = comedyResult.results
+      })
+    ).subscribe()
+  }
+
+  //thriller
+
+  thrillerMovies() {
+    this.movieService.fetchThrilerMovies().pipe(
+      tap((thrilerResult) => {
+        this.getThrilerMovies = thrilerResult.results
+      })
+    ).subscribe()
+  }
+
+
+  //documentary
+
+  documenatryMovies() {
+    this.movieService.fetchDocumentaryMovies().pipe(
+      tap((documentaryResult) => {
+        this.getDocumentaryMovies = documentaryResult.results
+      })
+    ).subscribe()
+  }
+
+  //science
+
+  scienceMovies() {
+    this.movieService.fetchScieneMovies().pipe(
+      tap((scienceResult) => {
+        this.getScienceMovies = scienceResult.results
+      })
+    ).subscribe()
+  }
+
+  //animation
+
+  animationMovies() {
+    this.movieService.fetchAnimationMovies().pipe(
+      tap((animationResult) => {
+        this.getAnimationMovies = animationResult.results
+      })
     ).subscribe()
   }
 }
