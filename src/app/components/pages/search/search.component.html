@@ -9,4 +9,21 @@
       </div>
     </div>
   </form>
+
+  <div class="row mt-5">
+    <div class="col-lg-4" *ngFor="let searchedItems of searchedMovies">
+      <div class="row mb-4">
+        <div class="col-lg-3" *ngIf="searchedItems.poster_path">
+          <img [routerLink]="['/movie', searchedItems.id]"
+               src="https://image.tmdb.org/t/p/original{{searchedItems.poster_path}}"
+               class="d-block w-100" alt="..."
+          >
+        </div>
+        <div class="col-lg-9">
+          <h5>{{searchedItems.original_title}}</h5>
+          <p>{{searchedItems.overview}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

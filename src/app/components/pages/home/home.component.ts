@@ -3,6 +3,7 @@ import { MovieService } from '../../../core/services/movie.service';
 import { tap } from 'rxjs';
 import { MoviesModel } from '../../../core/models/movies-model';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,9 +19,10 @@ export class HomeComponent implements OnInit{
   getDocumentaryMovies: MoviesModel[] = []
   getScienceMovies: MoviesModel[] = []
   getAnimationMovies: MoviesModel[] = []
-  activateIndex = 0
+  // activateIndex = 0
 
   constructor(private movieService: MovieService) {
+
   }
 
   ngOnInit() {
@@ -40,13 +42,6 @@ export class HomeComponent implements OnInit{
       this.bannerData = data.results
       console.log(this.bannerData, '#banners')
     })
-  }
-  previousSlide() {
-    this.activateIndex = this.activateIndex === 0 ? this.bannerData.length - 1 : this.activateIndex - 1
-  }
-
-  nextSlide() {
-    this.activateIndex = this.activateIndex === this.bannerData.length - 1 ? 0 : this.activateIndex + 1
   }
 
   getTrendingMovies() {

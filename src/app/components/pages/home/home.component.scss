@@ -5,7 +5,7 @@
 
     img{
       height: 700px;
-      object-fit: fill;
+      object-fit: cover;
     }
   }
 
@@ -49,3 +49,5 @@
 .rowposter::-webkit-scrollbar{
   display: none;
 }
+
+

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MovieService } from '../../../core/services/movie.service';
+import { MoviesModel } from '../../../core/models/movies-model';
 
 @Component({
   selector: 'app-search',
@@ -8,6 +9,7 @@ import { MovieService } from '../../../core/services/movie.service';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit{
+  searchedMovies:MoviesModel[] = []
   constructor(private movieService: MovieService) {
   }
 
@@ -19,7 +21,7 @@ export class SearchComponent implements OnInit{
   });
   submitForm() {
     this.movieService.getSearchMovie(this.searchForm.value).subscribe((result) => {
-      console.log(result)
+      this.searchedMovies = result.results
     })
   }
 }

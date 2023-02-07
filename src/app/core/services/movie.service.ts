@@ -30,8 +30,8 @@ export class MovieService {
 
   //Get search movies but not working invalid api key return 401 error
 
-  getSearchMovie(title: any): Observable<any>{
-    return this.http.get(`${this.baseUrl}/search/movie?api_key=${this.apiKey}/$query=${title.movieName}`)
+  getSearchMovie(title: any): Observable<MoviesModel>{
+    return this.http.get<MoviesModel>(`${this.baseUrl}/search/movie?api_key=${this.apiKey}&query=${title.movieName}`)
   }
 
   // get Single Movie
