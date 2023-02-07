@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit{
   getDocumentaryMovies: MoviesModel[] = []
   getScienceMovies: MoviesModel[] = []
   getAnimationMovies: MoviesModel[] = []
-  // activateIndex = 0
+  activeIndex = 0
 
   constructor(private movieService: MovieService) {
 
@@ -37,12 +37,19 @@ export class HomeComponent implements OnInit{
     this.animationMovies()
   }
 
+  changeBanner(step: number) {
+    this.activeIndex = (this.activeIndex + step + this.bannerData.length) % this.bannerData.length;
+  }
+
+
   getBanner() {
     this.movieService.moviesForBanner().subscribe((data) => {
       this.bannerData = data.results
       console.log(this.bannerData, '#banners')
     })
   }
+
+
 
   getTrendingMovies() {
     this.movieService.trendingMovies().pipe(
